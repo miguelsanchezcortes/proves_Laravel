@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-orange-600 text-3xl">Crear usuari</h1>
+    <div class="m-6 p-4">
+        <h1 class="text-orange-600 text-3xl">Crear usuari</h1>
 
     <form action="/user/store" method="POST">
         @csrf
@@ -40,6 +41,8 @@
 
         <button type="submit" class="bg-blue-500 text-white p-2 rounded-md mt-2">Crear usuari</button>
     </form>
+    </div>
+    
     {{-- @if ($errors->any())
         <div>
             <ul>

@@ -17,7 +17,7 @@ class UserController extends Controller
         $credentials = $request->validate([
             'name' => ['required', 'string', 'max:255','min-3'],
             'email' => ['required','email','unique:users'],
-            'password' => ['required','min3','confirmed'],
+            'password' => ['required','min-3','confirmed'],
         ]);
 
         // dd($request->all());
