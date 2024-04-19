@@ -15,9 +15,9 @@ class UserController extends Controller
     public function store(Request $request){
         
         $credentials = $request->validate([
-            'name' => ['required', 'string', 'max:255','min-3'],
+            'name' => ['required', 'string', 'max:255','min:3'],
             'email' => ['required','email','unique:users'],
-            'password' => ['required','min-3','confirmed'],
+            'password' => ['required','min:3','confirmed'],
         ]);
 
         // dd($request->all());
@@ -36,7 +36,7 @@ class UserController extends Controller
         return view('user.login');
     }
 
-    public function autenticate(Request $request){
+    public function authenticate(Request $request){
         $credentials = $request->validate([
             'email' => ['required','email'],
             'password' => ['required'],
@@ -50,5 +50,21 @@ class UserController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    public function list(){
+        $users = User::all();
+        return view('user.list')->with('users',$users);
+    }
+
+    public function edit($id){
+        $user = User::find($id);
+        return view('user.edit')->with('user',$user);
+    }
+
+    public function delete($id){
+        $user = User::find($id);
+        $user->delete();
+        return redirect('user/list')->with('status','User deleted successfully!');
     }
 }
