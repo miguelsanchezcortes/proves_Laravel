@@ -30,6 +30,8 @@
             <p class="text-red-500">{{ $message }}</p>
         @enderror
 
+        <input class="hidden" type="text" name="id" id="id" value="{{ $user->id }}">
+
         <button type="submit" class="bg-blue-500 text-white p-2 rounded-md mt-2">Editar usuari</button>
     </form>
     </div>

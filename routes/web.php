@@ -15,5 +15,6 @@ Route::post('user/store', [UserController::class, 'store']);
 Route::get('/user/login', [UserController::class, 'login']);
 Route::post('/user/login',[UserController::class, 'authenticate']);
 Route::get('/user/list', [UserController::class, 'list']);
-Route::get('/user/edit', [UserController::class, 'edit']);
-Route::get('/user/delete', [UserController::class, 'delete']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+Route::get('/user/delete/{id}', [UserController::class, 'delete']);
+Route::post('/user/update/{id}',[UserController::class, 'update']);

@@ -44,7 +44,7 @@ class UserController extends Controller
 
         if(auth()->attempt($credentials)){
             $request->session()->regenerate();
-            redirect('/user/login')->with('status','User logged in successfully!');
+            redirect('/user/list')->with('status','User logged in successfully!');
         }
 
         return back()->withErrors([
@@ -59,12 +59,25 @@ class UserController extends Controller
 
     public function edit($id){
         $user = User::find($id);
-        return view('user.edit')->with('user',$user);
+        return view('user.update')->with('user',$user);
     }
 
     public function delete($id){
+
         $user = User::find($id);
         $user->delete();
         return redirect('user/list')->with('status','User deleted successfully!');
+    }
+
+    public function update(Request $request){
+        $id = $request->id;
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $user->save();
+
+        return redirect('user/list')->with('status','User updated successfully!');
     }
 }

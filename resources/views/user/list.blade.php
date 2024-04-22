@@ -24,5 +24,11 @@
                 @endforeach
             </tbody>
         </table>
+        @if(session('status'))
+        <div class="bg-green-500 text-white text-sm font-bold p-3 mt-2 rounded-md">
+            {{ session('status') }}
+        </div>
+    @endif
     </div>
+   
 @endsection
